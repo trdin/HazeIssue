@@ -44,7 +44,10 @@ fun MainScreen() {
                 modifier = Modifier.hazeEffect(
                     state = hazeState,
                     style = getHazeStyle()
-                ),
+                ) {
+                    progressive =
+                        HazeProgressive.verticalGradient(startIntensity = 1f, endIntensity = 0f)
+                },
                 title = { Text("Top Bar") },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Transparent)
             )
@@ -55,7 +58,8 @@ fun MainScreen() {
                     state = hazeState,
                     style = getHazeStyle()
                 ) {
-                    progressive = HazeProgressive.verticalGradient(startIntensity = 1f, endIntensity = 1f)
+                    progressive =
+                        HazeProgressive.verticalGradient(startIntensity = 0f, endIntensity = 1f)
                 },
                 containerColor = Color.Transparent
             ) {
