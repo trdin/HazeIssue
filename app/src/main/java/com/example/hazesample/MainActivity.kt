@@ -55,7 +55,7 @@ fun MainScreen() {
                     state = hazeState,
                     style = getHazeStyle()
                 ) {
-                    progressive = HazeProgressive.verticalGradient(startIntensity = 0.8f, endIntensity = 1f)
+                    progressive = HazeProgressive.verticalGradient(startIntensity = 1f, endIntensity = 1f)
                 },
                 containerColor = Color.Transparent
             ) {
