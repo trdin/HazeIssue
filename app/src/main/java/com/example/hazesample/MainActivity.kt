@@ -22,8 +22,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
@@ -35,6 +38,7 @@ import androidx.navigation.navArgument
 import coil.compose.AsyncImage
 import com.example.hazesample.ui.theme.HazeSampleTheme
 import dev.chrisbanes.haze.*
+import dev.chrisbanes.haze.materials.ExperimentalHazeMaterialsApi
 import dev.chrisbanes.haze.materials.HazeMaterials
 
 class MainActivity : ComponentActivity() {
@@ -97,6 +101,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+@OptIn(ExperimentalHazeMaterialsApi::class)
 @Composable
 fun MainScreen(navController: NavHostController) {
     val hazeState = remember { HazeState() }
@@ -107,9 +112,9 @@ fun MainScreen(navController: NavHostController) {
                 modifier = Modifier
                     .hazeEffect(
                         state = hazeState,
-                        style = getHazeStyle(Color.Transparent),
+                        style = getHazeStyle()
                     ) {
-                        inputScale = HazeInputScale.Fixed(0.33f)
+                        //inputScale = HazeInputScale.Fixed(0.33f)
                         //progressive = HazeProgressive.verticalGradient(startIntensity = 1f, endIntensity = 1f)
                     }
                     .fillMaxWidth()
@@ -127,7 +132,7 @@ fun MainScreen(navController: NavHostController) {
                         state = hazeState,
                         style = getHazeStyle()
                     ) {
-                        inputScale = HazeInputScale.Fixed(0.33f)
+                      //  inputScale = HazeInputScale.Fixed(0.33f)
                         //   progressive = HazeProgressive.verticalGradient(startIntensity = 1f, endIntensity = 1f)
                     }
                     .fillMaxWidth()
@@ -146,11 +151,13 @@ fun MainScreen(navController: NavHostController) {
             modifier = Modifier
                 .background(Color.Black)
                 .hazeSource(state = hazeState, zIndex = 1f)
-                .padding(vertical = 10.dp)
+               //.padding(vertical = 1.dp)
         ) {
             val imageSections = listOf(
                 "Nature" to listOf(
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXZ5HEps0g0sgjKNEl9W2g1xYsAiu1N9IRnw&s",
                     "https://img.freepik.com/free-vector/realistic-test-paper-composition-with-pencil-stack-students-paperwork-with-marks-correct-answers_1284-54249.jpg?semt=ais_hybrid",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXZ5HEps0g0sgjKNEl9W2g1xYsAiu1N9IRnw&s",
                     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRA8MOd8rpat-PJsJQPEc4kHaFru9yIwsJu9Q&s",
                     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRA8MOd8rpat-PJsJQPEc4kHaFru9yIwsJu9Q&s",
                     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRA8MOd8rpat-PJsJQPEc4kHaFru9yIwsJu9Q&s",
@@ -159,6 +166,7 @@ fun MainScreen(navController: NavHostController) {
                 ),
                 "Architecture" to listOf(
                     "https://img.freepik.com/free-vector/realistic-test-paper-composition-with-pencil-stack-students-paperwork-with-marks-correct-answers_1284-54249.jpg?semt=ais_hybrid",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXZ5HEps0g0sgjKNEl9W2g1xYsAiu1N9IRnw&s",
                     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRA8MOd8rpat-PJsJQPEc4kHaFru9yIwsJu9Q&s",
                     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRA8MOd8rpat-PJsJQPEc4kHaFru9yIwsJu9Q&s",
                     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRA8MOd8rpat-PJsJQPEc4kHaFru9yIwsJu9Q&s",
@@ -166,6 +174,7 @@ fun MainScreen(navController: NavHostController) {
                     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXDZNZmOEhtCU5tCROzZpFuBmhWU-fBZSvJg&s"
                 ),
                 "Technology" to listOf(
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXZ5HEps0g0sgjKNEl9W2g1xYsAiu1N9IRnw&s",
                     "https://img.freepik.com/free-vector/realistic-test-paper-composition-with-pencil-stack-students-paperwork-with-marks-correct-answers_1284-54249.jpg?semt=ais_hybrid",
                     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRA8MOd8rpat-PJsJQPEc4kHaFru9yIwsJu9Q&s",
                     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRA8MOd8rpat-PJsJQPEc4kHaFru9yIwsJu9Q&s",
@@ -177,6 +186,7 @@ fun MainScreen(navController: NavHostController) {
                 "Technology" to listOf(
                     "https://img.freepik.com/free-vector/realistic-test-paper-composition-with-pencil-stack-students-paperwork-with-marks-correct-answers_1284-54249.jpg?semt=ais_hybrid",
                     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRA8MOd8rpat-PJsJQPEc4kHaFru9yIwsJu9Q&s",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXZ5HEps0g0sgjKNEl9W2g1xYsAiu1N9IRnw&s",
                     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRA8MOd8rpat-PJsJQPEc4kHaFru9yIwsJu9Q&s",
                     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRA8MOd8rpat-PJsJQPEc4kHaFru9yIwsJu9Q&s",
                     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRA8MOd8rpat-PJsJQPEc4kHaFru9yIwsJu9Q&s",
@@ -184,12 +194,23 @@ fun MainScreen(navController: NavHostController) {
                 ),
                 "Technology" to listOf(
                     "https://img.freepik.com/free-vector/realistic-test-paper-composition-with-pencil-stack-students-paperwork-with-marks-correct-answers_1284-54249.jpg?semt=ais_hybrid",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXZ5HEps0g0sgjKNEl9W2g1xYsAiu1N9IRnw&s",
                     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRA8MOd8rpat-PJsJQPEc4kHaFru9yIwsJu9Q&s",
                     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRA8MOd8rpat-PJsJQPEc4kHaFru9yIwsJu9Q&s",
                     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRA8MOd8rpat-PJsJQPEc4kHaFru9yIwsJu9Q&s",
                     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXDZNZmOEhtCU5tCROzZpFuBmhWU-fBZSvJg&s"
                 ),
                 "Technology" to listOf(
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXZ5HEps0g0sgjKNEl9W2g1xYsAiu1N9IRnw&s",
+                    "https://img.freepik.com/free-vector/realistic-test-paper-composition-with-pencil-stack-students-paperwork-with-marks-correct-answers_1284-54249.jpg?semt=ais_hybrid",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXZ5HEps0g0sgjKNEl9W2g1xYsAiu1N9IRnw&s",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRA8MOd8rpat-PJsJQPEc4kHaFru9yIwsJu9Q&s",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRA8MOd8rpat-PJsJQPEc4kHaFru9yIwsJu9Q&s",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRA8MOd8rpat-PJsJQPEc4kHaFru9yIwsJu9Q&s",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXDZNZmOEhtCU5tCROzZpFuBmhWU-fBZSvJg&s"
+                ),
+                "Technology" to listOf(
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXZ5HEps0g0sgjKNEl9W2g1xYsAiu1N9IRnw&s",
                     "https://img.freepik.com/free-vector/realistic-test-paper-composition-with-pencil-stack-students-paperwork-with-marks-correct-answers_1284-54249.jpg?semt=ais_hybrid",
                     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRA8MOd8rpat-PJsJQPEc4kHaFru9yIwsJu9Q&s",
                     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRA8MOd8rpat-PJsJQPEc4kHaFru9yIwsJu9Q&s",
@@ -197,6 +218,7 @@ fun MainScreen(navController: NavHostController) {
                     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXDZNZmOEhtCU5tCROzZpFuBmhWU-fBZSvJg&s"
                 ),
                 "Technology" to listOf(
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXZ5HEps0g0sgjKNEl9W2g1xYsAiu1N9IRnw&s",
                     "https://img.freepik.com/free-vector/realistic-test-paper-composition-with-pencil-stack-students-paperwork-with-marks-correct-answers_1284-54249.jpg?semt=ais_hybrid",
                     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRA8MOd8rpat-PJsJQPEc4kHaFru9yIwsJu9Q&s",
                     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRA8MOd8rpat-PJsJQPEc4kHaFru9yIwsJu9Q&s",
@@ -204,13 +226,7 @@ fun MainScreen(navController: NavHostController) {
                     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXDZNZmOEhtCU5tCROzZpFuBmhWU-fBZSvJg&s"
                 ),
                 "Technology" to listOf(
-                    "https://img.freepik.com/free-vector/realistic-test-paper-composition-with-pencil-stack-students-paperwork-with-marks-correct-answers_1284-54249.jpg?semt=ais_hybrid",
-                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRA8MOd8rpat-PJsJQPEc4kHaFru9yIwsJu9Q&s",
-                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRA8MOd8rpat-PJsJQPEc4kHaFru9yIwsJu9Q&s",
-                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRA8MOd8rpat-PJsJQPEc4kHaFru9yIwsJu9Q&s",
-                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXDZNZmOEhtCU5tCROzZpFuBmhWU-fBZSvJg&s"
-                ),
-                "Technology" to listOf(
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXZ5HEps0g0sgjKNEl9W2g1xYsAiu1N9IRnw&s",
                     "https://img.freepik.com/free-vector/realistic-test-paper-composition-with-pencil-stack-students-paperwork-with-marks-correct-answers_1284-54249.jpg?semt=ais_hybrid",
                     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRA8MOd8rpat-PJsJQPEc4kHaFru9yIwsJu9Q&s",
                     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRA8MOd8rpat-PJsJQPEc4kHaFru9yIwsJu9Q&s",
@@ -223,14 +239,14 @@ fun MainScreen(navController: NavHostController) {
                 item {
                     Text(
                         text = title,
-                        style = MaterialTheme.typography.headlineSmall,
+                        style = MaterialTheme.typography.headlineSmall.copy(fontWeight = FontWeight.Bold),
                         modifier = Modifier.padding(8.dp)
                     )
                 }
                 item {
                     LazyRow(
                         modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.spacedBy(10.dp)
+                        horizontalArrangement = Arrangement.spacedBy(4.dp)
                     ) {
                         items(images) { imageUrl ->
                             Card(
@@ -244,25 +260,27 @@ fun MainScreen(navController: NavHostController) {
                                     }
                                 },
                             ) {
-                                val hazeState1 = remember { HazeState() }
+                                //val hazeState1 = remember { HazeState() }
                                 Box {
                                     AsyncImage(
                                         model = imageUrl,
                                         contentDescription = null,
                                         modifier = Modifier
                                             .fillMaxSize()
-                                            .hazeSource(state = hazeState1, zIndex = 0f),
-                                        contentScale = ContentScale.Crop
+                                            //.hazeSource(state = hazeState1, zIndex = 0f),
+                                            .rotate(90f),
+                                        contentScale = ContentScale.Crop,
+                                        alignment = Alignment.CenterStart
                                     )
                                     Box(
                                         modifier = Modifier
                                             .fillMaxWidth()
                                             .height(50.dp)
                                             .align(Alignment.BottomCenter)
-                                            .hazeEffect(
-                                                state = hazeState1,
-                                                style = HazeMaterials.ultraThin()
-                                            )
+//                                            .hazeEffect(
+//                                                state = hazeState1,
+//                                                style = HazeMaterials.ultraThin()
+//                                            )
                                     )
                                 }
                             }
