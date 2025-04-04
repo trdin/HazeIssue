@@ -12,6 +12,7 @@ import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
@@ -114,7 +115,9 @@ fun MainScreen(navController: NavHostController) {
                     .fillMaxWidth()
                     .height(100.dp)
             )
-            { Text("Top Bar", modifier = Modifier.padding(16.dp)) }
+            { Text("Top Bar", modifier = Modifier.padding(16.dp).clickable {navController.navigate("details/${123}"){
+                launchSingleTop = true
+            }  }.height(100.dp). background(Color.Yellow).padding(top = 10.dp)) }
         },
         bottomBar = {
             Box(
